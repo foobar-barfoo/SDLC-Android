@@ -1,5 +1,6 @@
 name: Dependency Check
 
+
 on: [push,pull_request]
 
 jobs:
@@ -12,7 +13,7 @@ jobs:
     name: dependency_check_test
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: List files in the workspace
         run: |
           ls ${{ github.workspace }}
@@ -44,6 +45,6 @@ jobs:
       # Upload the SARIF file to Github, so the findings show up in "Security / Code Scanning alerts"
       - name: Upload Dependency Check report to CodeQL
         if: always()
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{github.workspace}}/reports/dependency-check-report.sarif
